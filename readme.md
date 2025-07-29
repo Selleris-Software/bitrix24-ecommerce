@@ -28,6 +28,7 @@ This document provides an overview of the Bitrix24 E-commerce REST API methods o
 | **Pricing** | `catalog.price.*`, `catalog.priceType.*`, `catalog.roundingRule.*` | Manage product prices and multiple price types (retail, wholesale, partner); add or modify price rounding rules for consistent display. |
 | **Units of Measurement & Ratios** | `catalog.measure.*`, `catalog.ratio.*` | Create custom measurement units and ratios (e.g., meters, packs of six) for products. |
 | **Margins & VAT** | `catalog.extra.*`, `catalog.vat.*` | Define margins for pricing and set VAT rates for the entire catalog or individual products. |
+| **Cart Rules & Discounts** | `sale.discount.*`, `sale.coupon.*` | Create and manage promotional rules, discounts, coupons, and cart-based pricing rules; apply conditional discounts based on cart contents, customer groups, or promotional codes. |
 | **Warehouses & Inventory** | `catalog.store.*`, `catalog.document.*` | Manage warehouses; control stock across multiple locations; add or conduct inventory documents for receipts, adjustments, transfers, returns and write‑offs. |
 
 ## Detailed Method Examples
@@ -48,7 +49,14 @@ This document provides an overview of the Bitrix24 E-commerce REST API methods o
 - `sale.order.get` - Get order details
 - `sale.order.list` - List orders
 - `sale.order.delete` - Delete order
-- `sale.order.getFields` - Get order fields
+- `sale.order.getfields` - Get order fields
+
+#### Orders from External Sources
+- `sale.orderexternal.add` - Add order from external source
+- `sale.orderexternal.update` - Update external order
+- `sale.orderexternal.get` - Get external order details
+- `sale.orderexternal.list` - List external orders
+- `sale.orderexternal.delete` - Delete external order
 
 ### Payment System Methods
 #### Handlers
@@ -121,3 +129,152 @@ This document provides an overview of the Bitrix24 E-commerce REST API methods o
 - `catalog.document.element.list` - List document elements
 - `catalog.document.element.delete` - Delete document element
 - `catalog.document.element.getFields` - Get document element fields
+
+### Product Management Methods
+- `catalog.product.add` - Create or add simple products
+- `catalog.product.update` - Update existing products  
+- `catalog.product.get` - Get product details by ID
+- `catalog.product.list` - Retrieve lists of products
+- `catalog.product.download` - Download product files
+- `catalog.product.delete` - Delete products
+- `catalog.product.getFieldsByFilter` - Get product fields by filter criteria
+
+### Catalog Sections (Categories) Methods
+- `catalog.section.add` - Add catalog section
+- `catalog.section.update` - Update catalog section
+- `catalog.section.get` - Get section details
+- `catalog.section.list` - List catalog sections
+- `catalog.section.delete` - Delete catalog section
+- `catalog.section.getFields` - Get section fields
+
+### Pricing Methods
+- `catalog.price.add` - Add product price
+- `catalog.price.update` - Update product price
+- `catalog.price.get` - Get price details
+- `catalog.price.list` - List prices
+- `catalog.price.delete` - Delete price
+- `catalog.priceType.add` - Add price type
+- `catalog.priceType.update` - Update price type
+- `catalog.priceType.get` - Get price type
+- `catalog.priceType.list` - List price types
+- `catalog.priceType.delete` - Delete price type
+
+### Units of Measurement Methods
+- `catalog.measure.add` - Add unit of measurement
+- `catalog.measure.update` - Update unit of measurement
+- `catalog.measure.get` - Get measurement unit
+- `catalog.measure.list` - List measurement units
+- `catalog.measure.delete` - Delete measurement unit
+
+### Additional Sale Methods
+#### Basket Properties
+- `sale.basketproperty.add` - Add basket property
+- `sale.basketproperty.update` - Update basket property
+- `sale.basketproperty.get` - Get basket property
+- `sale.basketproperty.list` - List basket properties
+- `sale.basketproperty.delete` - Delete basket property
+
+#### Trading Platforms
+- `sale.tradingplatform.add` - Add trading platform
+- `sale.tradingplatform.update` - Update trading platform
+- `sale.tradingplatform.get` - Get trading platform
+- `sale.tradingplatform.list` - List trading platforms
+- `sale.tradingplatform.delete` - Delete trading platform
+
+#### Property Relations & Binding Methods
+- `sale.propertyRelation.add` - Add property relation
+- `sale.propertyRelation.update` - Update property relation
+- `sale.propertyRelation.get` - Get property relation
+- `sale.propertyRelation.list` - List property relations
+- `sale.propertyRelation.delete` - Delete property relation
+
+#### Property Values Methods
+- `sale.propertyvalue.add` - Add property value
+- `sale.propertyvalue.update` - Update property value
+- `sale.propertyvalue.get` - Get property value
+- `sale.propertyvalue.list` - List property values
+- `sale.propertyvalue.delete` - Delete property value
+
+### Cart Rules & Discount Management Methods
+> **Note**: These methods may not be fully documented in official Bitrix24 API documentation. Availability should be verified with your Bitrix24 instance.
+
+#### Discount Rules
+- `sale.discount.add` - Create new discount rule
+- `sale.discount.update` - Update existing discount rule
+- `sale.discount.get` - Get discount rule details
+- `sale.discount.list` - List all discount rules
+- `sale.discount.delete` - Delete discount rule
+- `sale.discount.getFields` - Get discount rule fields
+
+#### Coupon Management
+- `sale.coupon.add` - Create new coupon
+- `sale.coupon.update` - Update existing coupon
+- `sale.coupon.get` - Get coupon details
+- `sale.coupon.list` - List all coupons
+- `sale.coupon.delete` - Delete coupon
+- `sale.coupon.getFields` - Get coupon fields
+- `sale.coupon.activate` - Activate coupon
+- `sale.coupon.deactivate` - Deactivate coupon
+
+#### Cart Rule Conditions
+- `sale.discount.condition.add` - Add discount condition
+- `sale.discount.condition.update` - Update discount condition
+- `sale.discount.condition.get` - Get discount condition details
+- `sale.discount.condition.list` - List discount conditions
+- `sale.discount.condition.delete` - Delete discount condition
+
+#### Promotional Actions
+- `sale.discount.action.add` - Add discount action
+- `sale.discount.action.update` - Update discount action
+- `sale.discount.action.get` - Get discount action details
+- `sale.discount.action.list` - List discount actions
+- `sale.discount.action.delete` - Delete discount action
+
+## Common Cart Rule Types
+
+### Percentage Discounts
+- Fixed percentage off entire cart
+- Percentage off specific products or categories
+- Tiered percentage discounts based on cart value
+
+### Fixed Amount Discounts
+- Fixed amount off entire cart
+- Buy X get Y free offers
+- Fixed discount on specific products
+
+### Quantity-Based Rules
+- Bulk pricing discounts
+- Quantity thresholds (buy 3, get 1 free)
+- Progressive discounts based on quantity
+
+### Customer-Based Rules
+- Customer group discounts
+- Loyalty program discounts
+- First-time customer promotions
+- Repeat customer incentives
+
+### Conditional Rules
+- Minimum cart value requirements
+- Product combination rules
+- Category-specific promotions
+- Time-based restrictions (seasonal sales)
+
+### Coupon Types
+- Single-use coupons
+- Multi-use coupons with limits
+- Percentage or fixed value coupons
+- Product-specific coupons
+- Category-specific coupons
+
+---
+
+**Important Notes:**
+1. **API Availability**: All methods listed above are based on the official Bitrix24 REST API documentation. However, availability may vary depending on your Bitrix24 edition (cloud vs on-premise) and subscription plan.
+2. **Method Verification**: Before implementing, always verify method availability in your specific Bitrix24 environment using the documentation at https://apidocs.bitrix24.com/
+3. **Permission Requirements**: Most methods require specific permissions and scopes. Check the official documentation for required permissions for each method.
+4. **Cart Rules and Discount Management**: These APIs may not be fully exposed in all Bitrix24 editions or may require custom development.
+5. **Alternative Implementation**: If REST API methods are not available, consider using:
+   - Bitrix24 webhooks for cart events
+   - Custom business process automation
+   - Integration with external promotional engines
+6. **Testing Required**: Test API availability in your specific Bitrix24 environment before implementation.
